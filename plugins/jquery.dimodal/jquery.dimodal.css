@@ -1,0 +1,238 @@
+/* Базовые */
+.dimodal{position: fixed; top: 0; right: 0; bottom: 0; left: 0; /*visibility: hidden;*/}
+.dimodal-item{position: absolute; top: 0; right: 0; bottom: 0; left: 0;}
+.dimodal-background{position: fixed; top: 0; right: 0; bottom: 0; left: 0; background: rgba(43, 46, 56, .5); animation-fill-mode: forwards; animation-duration: 0.2s;}
+.dimodal-scroller{position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow-y: scroll; display: flex;}
+.dimodal-aligner{flex: 1 1 auto; margin: auto; display: flex; width: 100%;}
+.dimodal-content{flex: 0 0 auto; min-height: 0; position: relative; display: flex; animation-fill-mode: forwards; animation-duration: 0.2s; max-width: 100%;}
+.dimodal-content__inner{flex: 1 1 auto; max-width: 100%;}
+.dimodal-hide{position: absolute; top: 0; right: 0; transform: translate(100%, -100%); padding: 8px; background: #272E32; color: #fff; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 22px}
+
+/* Имена анимаций */
+.dimodal-background-animation--fadein-1{-webkit-animation-name: background-fadein-1; animation-name: background-fadein-1;}
+.dimodal-background-animation--fadeout-0{-webkit-animation-name: background-fadeout-0; animation-name: background-fadeout-0;}
+.dimodal-content-animation--fadein-1{-webkit-animation-name: content-fadein-1; animation-name: content-fadein-1;}
+.dimodal-content-animation--fadeout-0{-webkit-animation-name: content-fadeout-0; animation-name: content-fadeout-0;}
+.dimodal-content-animation--right-slide-1{-webkit-animation-name: content-right-slide-1; animation-name: content-right-slide-1;}
+.dimodal-content-animation--right-slide-0{-webkit-animation-name: content-right-slide-0; animation-name: content-right-slide-0;}
+.dimodal-content-animation--left-slide-1{-webkit-animation-name: content-left-slide-1; animation-name: content-left-slide-1;}
+.dimodal-content-animation--left-slide-0{-webkit-animation-name: content-left-slide-0; animation-name: content-left-slide-0;}
+.dimodal-content-animation--bottom-slidein-1{-webkit-animation-name: content-bottom-slidein-1; animation-name: content-bottom-slidein-1;}
+.dimodal-content-animation--bottom-slideout-0{-webkit-animation-name: content-bottom-slideout-0; animation-name: content-bottom-slideout-0;}
+
+/* Форсер анимации */
+.dimodal-animation--force{animation-duration: 0.001s;}
+
+/* Фикс полного экрана в хроме */
+.dimodal-animation--fillmodefix{animation-fill-mode: backwards;}
+
+/* Алигнер по центру */
+.dimodal-aligner--aligned-center{padding: 50px;}
+.dimodal-aligner--aligned-center .dimodal-content{margin: auto;}
+
+/* Алигнер справа */
+.dimodal-aligner--aligned-right{align-items: flex-end;}
+.dimodal-aligner--aligned-right .dimodal-content{flex: 1 1 auto;}
+.dimodal-aligner--aligned-right .dimodal-hide{left: 0; right: initial; transform: translate(-100%, 0);}
+
+/* Алигнер слева */
+.dimodal-aligner--aligned-left{align-items: flex-start;}
+.dimodal-aligner--aligned-left .dimodal-content{flex: 1 1 auto;}
+.dimodal-aligner--aligned-left .dimodal-hide{transform: translate(100%, 0);}
+
+/* Алигнер на весь экран */
+.dimodal-aligner--aligned-full{align-items: stretch;}
+.dimodal-aligner--aligned-full .dimodal-content{flex: 1 1 auto;}
+.dimodal-aligner--aligned-full .dimodal-hide{transform: translate(0, 0);}
+
+/* Анимации */
+@-webkit-keyframes background-fadein-1{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+@keyframes background-fadein-1{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+@-webkit-keyframes background-fadeout-0{
+	from{
+		opacity: 1;
+	}
+	to{
+		opacity: 0;
+	}
+}
+@keyframes background-fadeout-0{
+	from{
+		opacity: 1;
+	}
+	to{
+		opacity: 0;
+	}
+}
+
+/* --- */
+
+@-webkit-keyframes content-fadein-1{
+	from{
+		-webkit-transform: scale(1.05);
+		transform: scale(1.05);
+		opacity: 0;
+	}
+	to{
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+@keyframes content-fadein-1{
+	from{
+		-webkit-transform: scale(1.05);
+		transform: scale(1.05);
+		opacity: 0;
+	}
+	to{
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes content-fadeout-0{
+	from{
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+	to{
+		-webkit-transform: scale(0.95);
+		transform: scale(0.95);
+		opacity: 0;
+	}
+}
+@keyframes content-fadeout-0{
+	from{
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 1;
+	}
+	to{
+		-webkit-transform: scale(0.95);
+		transform: scale(0.95);
+		opacity: 0;
+	}
+}
+
+/* --- */
+
+@-webkit-keyframes content-right-slide-1{
+	from{
+		-webkit-transform: translateX(100%);
+	}
+	to{
+		-webkit-transform: translateX(0);
+	}
+}
+@keyframes content-right-slide-1{
+	from{
+		-webkit-transform: translateX(100%);
+	}
+	to{
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-webkit-keyframes content-right-slide-0{
+	from{
+		-webkit-transform: translateX(0);
+	}
+	to{
+		-webkit-transform: translateX(100%);
+	}
+}
+@keyframes content-right-slide-0{
+	from{
+		-webkit-transform: translateX(0);
+	}
+	to{
+		-webkit-transform: translateX(100%);
+	}
+}
+
+/* --- */
+
+@-webkit-keyframes content-left-slide-1{
+	from{
+		-webkit-transform: translateX(-100%);
+	}
+	to{
+		-webkit-transform: translateX(0);
+	}
+}
+@keyframes content-left-slide-1{
+	from{
+		-webkit-transform: translateX(-100%);
+	}
+	to{
+		-webkit-transform: translateX(0);
+	}
+}
+
+@-webkit-keyframes content-left-slide-0{
+	from{
+		-webkit-transform: translateX(0);
+	}
+	to{
+		-webkit-transform: translateX(-100%);
+	}
+}
+@keyframes content-left-slide-0{
+	from{
+		-webkit-transform: translateX(0);
+	}
+	to{
+		-webkit-transform: translateX(-100%);
+	}
+}
+
+@-webkit-keyframes content-bottom-slideout-0{
+	from{
+		-webkit-transform: translateY(0);
+	}
+	to{
+		-webkit-transform: translateY(100%);
+	}
+}
+@keyframes content-bottom-slideout-0{
+	from{
+		-webkit-transform: translateY(0);
+	}
+	to{
+		-webkit-transform: translateY(100%);
+	}
+}
+
+@-webkit-keyframes content-bottom-slidein-1{
+	from{
+		-webkit-transform: translateY(100%);
+	}
+	to{
+		-webkit-transform: translateY(0);
+	}
+}
+@keyframes content-bottom-slidein-1{
+	from{
+		-webkit-transform: translateY(100%);
+	}
+	to{
+		-webkit-transform: translateY(0);
+	}
+}
